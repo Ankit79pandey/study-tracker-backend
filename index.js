@@ -37,6 +37,18 @@ app.get("/api/logs", async (req, res) => {
   }
 });
 
+
+app.delete("/api/logs",async(req,res)=>{
+  try{
+    const logs=await Log.find(req.body);
+    await log.delete();
+    res.json({success:true,message:"Deleted Successfully !"})
+  }
+  catch(err){
+    res.status(500).json({error:"Failed to Delete logs !"})
+  }
+});
+
 app.post("/api/logs", async (req, res) => {
   try {
     const log = new Log(req.body);
